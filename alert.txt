@@ -1,0 +1,26 @@
+package com.example.myapplication
+import android.content.Context
+import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+class MainActivity : AppCompatActivity() {
+--=
+private fun showAlert(context:Context) {
+val builder = AlertDialog.Builder(context)
+builder.setTitle("Alert")
+.setMessage("This is an example alert dialog")
+.setPositiveButton("OK") { dialog, id ->
+dialog.dismiss() // Dismiss the dialog
+}
+val dialog = builder.create()
+dialog.show()
+}
+-==
+override fun onCreate(savedInstanceState: Bundle?) {
+super.onCreate(savedInstanceState)
+setContentView(R.layout.activity_main)
+--=
+showAlert(this)
+--=
+}
+}

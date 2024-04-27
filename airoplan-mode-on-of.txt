@@ -1,0 +1,86 @@
+Receiver.kt
+-----------
+package com.example.myapplication
+--=
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.widget.Toast
+class =-Receiver-= :BroadcastReceiver() {
+override fun onReceive(context: Context?, intent: Intent?) {
+val isAirplaneModeEnabled = intent?.getBooleanExtra("state",
+false) ?: return
+if (isAirplaneModeEnabled) {
+Toast.makeText(context, "Airplane Mode Enabled",
+Toast.LENGTH_LONG).show()
+} else {
+Toast.makeText(context, "Airplane Mode Disabled",
+Toast.LENGTH_LONG).show()
+} }
+}
+-----------------------------------------------------------------------------
+manifest folder XML
+-------------------
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools">
+<application
+android:allowBackup="true"
+android:dataExtractionRules="@xml/data_extraction_rules"
+android:fullBackupContent="@xml/backup_rules"
+android:icon="@mipmap/ic_launcher"
+android:label="@string/app_name"
+android:roundIcon="@mipmap/ic_launcher_round"
+android:supportsRtl="true"
+android:theme="@style/Theme.MyApplication"
+tools:targetApi="31">
+<activity
+android:name=".MainActivity"
+android:exported="true">
+<intent-filter>
+<action android:name="android.intent.action.MAIN" />
+<category android:name="android.intent.category.LAUNCHER" />
+</intent-filter>
+</activity>
+--=
+<receiver android:name=".Receiver"
+android:enabled="true"
+android:exported="true">
+<intent-filter>
+<action
+android:name="android.intent.action.AIRPLANE_MODE" />
+</intent-filter>
+</receiver>
+--=
+</application>
+</manifest>
+-----------------------------------------------------------------------------
+package com.example.myapplication
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Toast
+class MainActivity : AppCompatActivity() {
+val tag = "StateChange"
+lateinit var receiver: Receiver
+override fun onCreate(savedInstanceState: Bundle?) {
+super.onCreate(savedInstanceState)
+setContentView(R.layout.activity_main)
+--=
+receiver = Receiver()
+IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED).also {
+registerReceiver(receiver, it)
+}
+--=
+}
+--=
+override fun onStop() {
+super.onStop()
+Log.i(tag, "onStop")
+unregisterReceiver(receiver)
+}
+--=
+}
+

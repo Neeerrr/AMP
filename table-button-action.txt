@@ -1,0 +1,52 @@
+Activity_main.kt
+------------------------------------------
+package com.r.table_view
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
+import android.widget.Button
+class MainActivity : AppCompatActivity() {
+override fun onCreate(savedInstanceState: Bundle?) {
+super.onCreate(savedInstanceState)
+setContentView(R.layout.activity_main)
+---=
+val button1 = findViewById<Button>(R.id.button1)
+button1.setOnClickListener {
+Toast.makeText(this, "Button1 clicked", Toast.LENGTH_LONG).show();
+}
+val button2 = findViewById<Button>(R.id.button2)
+button2.setOnClickListener {
+Toast.makeText(this, "Button2 clicked", Toast.LENGTH_LONG).show();
+}
+val button3 = findViewById<Button>(R.id.button3)
+button3.setOnClickListener {
+Toast.makeText(this, "Button3 clicked", Toast.LENGTH_LONG).show();
+}
+val button4 = findViewById<Button>(R.id.button4)
+button4.setOnClickListener {
+Toast.makeText(this, "Button4 clicked", Toast.LENGTH_LONG).show();
+}
+val button5 = findViewById<Button>(R.id.button5)
+button5.setOnClickListener {
+Toast.makeText(this, "Button5 clicked", Toast.LENGTH_LONG).show();
+}
+val button6 = findViewById<Button>(R.id.button6)
+button6.setOnClickListener {
+Toast.makeText(this, "Button6 clicked", Toast.LENGTH_LONG).show();
+}
+val button7 = findViewById<Button>(R.id.button7)
+button7.setOnClickListener {
+Toast.makeText(this, "Button7 clicked", Toast.LENGTH_LONG).show();
+}
+val button8 = findViewById<Button>(R.id.button8)
+button8.setOnClickListener {
+Toast.makeText(this, "Button8 clicked", Toast.LENGTH_LONG).show();
+}
+val button9 = findViewById<Button>(R.id.button9)
+button9.setOnClickListener {
+Toast.makeText(this, "Button9 clicked", Toast.LENGTH_LONG).show();
+}
+}
+---=
+}
